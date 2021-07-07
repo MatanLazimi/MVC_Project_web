@@ -1,0 +1,26 @@
+﻿@model ProjectMVC.ModelView.CustomerViewModel
+@using ProjectMVC.Models
+
+
+<span style="color:black">          Current Students</span>
+<br />
+@{
+    WebGrid obj = new WebGrid(Model.customers);
+}
+
+
+@obj.GetHtml(
+        htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+        columns: obj.Columns(
+                 obj.Column("CustomerNumber", "Student Number"),
+                 obj.Column("FirstName", "First Name"),
+                 obj.Column("LastName", "Last Name")))
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    <div>
+        <form action="Login">
+            <br />
+            <input id="Submit1" type="submit" value="Log Out" />
+        </form>
+    </div>
+}

@@ -1,0 +1,19 @@
+﻿@model ProjectMVC.ModelView.EmployeeViewModel
+@using ProjectMVC.Models
+
+
+<span style="color:black">          Current Employees</span>
+<br />
+@{
+    WebGrid obj = new WebGrid(Model.employees);
+}
+
+
+@obj.GetHtml(
+        htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+        columns: obj.Columns(
+                 obj.Column("FirstName", "First Name"),
+                 obj.Column("LastName", "Last Name"),
+                 obj.Column("Email"),
+                 obj.Column("Address")
+                 ))

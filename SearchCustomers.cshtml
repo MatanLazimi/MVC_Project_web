@@ -1,0 +1,78 @@
+﻿@model ProjectMVC.ModelView.CustomerViewModel
+@using ProjectMVC.Models;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <h2>Search Students</h2>
+</head>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<body>
+    <form id="frmadd">
+        <table>
+            <tr>
+                <td>Search Students</td>
+            </tr>
+            <tr>
+                <td>Enter First Name To Search:</td>
+                <td>
+                    @Html.TextBoxFor(m => m.customer.FirstName)
+                </td>
+            </tr>
+        </table>
+        <input id="Submit" type="submit" value="Search Students" onclick="SendData()" />
+    </form>
+
+    <br />
+    <div id="status"></div>
+    <table id="CustTable">
+        <tr>
+            <td>Student Number</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+        </tr>
+    </table>
+
+    <script language="javascript">
+            //JSON!!
+        $("#status").text("Loading.....");
+        $.get("getJson", null, func);
+
+        function func(customers)
+        {
+            var tbl = $("#CustTable");
+
+            for (i = 0; i < customers.length; i++)
+            {
+                //$("#CustTable").find("tr: gt()").remove();
+                var newRow = "<tr>" +
+                    "<td>" + customers[i].CustomerNumber + "</td>" +
+                    "<td>" + customers[i].FirstName + "</td>" +
+                    "<td>" + customers[i].LastName + "</td>" +
+                    "</tr>"
+                tbl.append(newRow);
+            }
+                
+            $("#status").text("");
+        }
+        
+        function SendData() {
+            var frmData = $("frmadd").serialize();
+            $.post("Submit_Search_Json", frmData, func);//send data to mvc again
+        }
+        </script>
+        <div>
+            <form action="Return">
+                <br />
+                <input id="Submit1" type="submit" value="Return" />
+            </form>
+        </div>
+</body>
+</html>

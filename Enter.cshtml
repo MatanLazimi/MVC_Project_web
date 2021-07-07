@@ -1,0 +1,58 @@
+﻿@model ProjectMVC.ModelView.CustomerViewModel
+@using ProjectMVC.Models;
+@{
+    ViewBag.Title = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<h2>Students</h2>
+<body>
+    <div>
+        @using (Html.BeginForm("Submit", "Manager", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="fn">First Name</label>
+                @Html.TextBoxFor(m => m.customer.FirstName)
+                @Html.ValidationMessageFor(x => x.customer.FirstName)
+            </div>
+
+            <div class="form-group">
+                <label for="ls">Last Name</label>
+                @Html.TextBoxFor(m => m.customer.LastName)
+                @Html.ValidationMessageFor(x => x.customer.LastName)
+            </div>
+
+            <div class="form-group">
+                <label for="cn">Student Number</label>
+                @Html.TextBoxFor(m => m.customer.CustomerNumber)
+                @Html.ValidationMessageFor(x => x.customer.CustomerNumber)
+            </div>
+
+            <div class="form-group">
+                <input id="Submit1" type="submit" value="Add Student" class="btn-primary" />
+            </div>
+        }
+        @using (Html.BeginForm("SearchCustomers", "Manager", FormMethod.Post))
+        {
+            <div class="form-group">
+                <input id="Submit1" type="submit" value="Search Students" class="btn-primary" />
+            </div>
+        }
+        @using (Html.BeginForm("ShowManager", "Manager", FormMethod.Post))
+        {
+            <div class="form-group">
+                <input id="Submit1" type="submit" value="Show my Details" class="btn-primary" />
+            </div>
+        }
+        @Html.Partial("DisaplayStudents_Manager", Model)
+    </div>
+</body>
+</html>
+
+

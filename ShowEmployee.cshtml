@@ -1,0 +1,66 @@
+﻿@model ProjectMVC.Models.Employee
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Show Employee</h2>
+    <div>
+        <b style="font-size:20px">Welcom back - @Model.FirstName, @Model.ID </b>
+    </div>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>Salary</th>
+            <th>Start Date/th>
+        </tr>
+        <tr>
+            <td>@Model.FirstName</td>
+            <td>@Model.LastName</td>
+            <td>@Model.Email</td>
+            <td>@Model.Address</td>
+            <td>@Model.Phone</td>
+            <td>@Model.Gender</td>
+            <td><span style="color:@Model.Color">@Model.Salary</span></td>
+            <td>@Model.StartDate.Date</td>
+        </tr>
+    </table>
+    <br />
+    <div>
+        <form action="LogOut">
+            <br />
+            <input id="Submit1" type="submit" value="Log Out" />
+        </form>
+        <img src="http://www.orna-law.co.il/img/images/%D7%A4%D7%99%D7%A8%D7%95%D7%A7_%D7%97%D7%91%D7%A8%D7%94_%D7%A2%D7%9C_%D7%99%D7%93%D7%99_%D7%A2%D7%95%D7%91%D7%93%D7%99%D7%9D_800-min.jpg" alt="Trulli" width="700" height="333">
+    </div>
+</body>
+</html>
+
